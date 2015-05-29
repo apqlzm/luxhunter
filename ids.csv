@@ -1,0 +1,105 @@
+Miasto	CityId
+Bydgoszcz	10
+Elbląg	63
+Gorzów Wielkopolski	60
+Katowice	17
+Kraków	3
+Leżajsk	62
+Łódź	4
+Olsztyn	20
+Opole	21
+Poznań	8
+Rzeszów	74
+Szczecin	24
+Toruń	73
+Trójmiasto	45
+Tychy	25
+Warszawa	1
+Wrocław	5
+
+
+Placowka	ClinicId
+Wybierz placówkę Grupy LUX MED	
+Endoskopia - Szpital chirurgii jednego dnia Grupy LUX MED	1035
+LX Warszawa - 17 Stycznia 39	1163
+LX Warszawa - 17 Stycznia 49	4
+LX Warszawa - Al. Jana Pawła II 78	13
+LX Warszawa - Al. Jerozolimskie 162	43
+LX Warszawa - Al. Jerozolimskie 65/79	1
+LX Warszawa - Bobrowiecka 1	19
+LX Warszawa - Chmielna 85/87	50
+LX Warszawa - Domaniewska 41B (Budynek Jupiter - Przychodnia D3 i D4)	2
+LX Warszawa - KEN 93	44
+LX Warszawa - Migdałowa 4	52
+LX Warszawa - Nowogrodzka 45	67
+LX Warszawa - Park Postępu 21C	589
+LX Warszawa - Prosta 51	90
+LX Warszawa - Puławska 15	56
+LX Warszawa - Racławicka 132B	57
+LX Warszawa - Stanów Zjednoczonych 72	45
+LX Warszawa - Szernera 3	60
+LX Warszawa - Taśmowa 7	91
+LX Warszawa - Wołoska 7 (Budynek Mars  - Przychodnia D1 i D2)	1389
+MR Piaseczno - Powstańców Warszawy 29	71
+MR Warszawa - Belgradzka 18	74
+MR Warszawa - Grójecka 186	75
+MR Warszawa - Myśliborska 95	76
+MR Warszawa - Św. Barbary 6/8	66
+MR Warszawa - Wrocławska 7A	77
+MR Warszawa - Wrzeciono 10C	80
+MR Warszawa - Żwirki i Wigury 39	78
+Oddział Diagnostyczny Warszawa - Cegłowska 80	1607
+PF Warszawa - Al. Jerozolimskie 65/79	847
+PF Warszawa - Racławicka 132B	824
+Przychodnia Diagnostyki - Warszawa ul. Kasprzaka 17 (pawilon 7)	1518
+Przychodnia Diagnostyki - Warszawa ul. Niekłańska 4/24	1532
+Przychodnia Diagnostyki - Warszawa ul. Stępińska 19/25	1410
+Przychodnia Diagnostyki - Warszawa ul. Św. Barbary 6/8	1591
+Szpital LUXMED - Warszawa - Puławska 455	961
+
+Specjalista	ServiceId
+Wybierz usługę	
+Konsultacja alergologa	4387
+Konsultacja chirurga dzieci	4394
+Konsultacja chirurga naczyniowego	4406
+Konsultacja chirurga ogólnego	4412
+Konsultacja chirurga onkologa	4418
+Konsultacja chirurga plastyka	4424
+Konsultacja dermatologa	4448
+Konsultacja diabetologa	4453
+Konsultacja endokrynologa	4461
+Konsultacja flebologiczna	6748
+Konsultacja gastroenterologa	4468
+Konsultacja geriatry	8286
+Konsultacja ginekologa	4480
+Konsultacja ginekologa - endokrynologa	4473
+Konsultacja hematologa	4486
+Konsultacja hepatologa	4491
+Konsultacja immunologa	7138
+Konsultacja internisty	4502
+Konsultacja kardiologa	4510
+Konsultacja laryngologa	4522
+Konsultacja lekarza rodzinnego	4528
+Konsultacja nefrologa	4534
+Konsultacja neurochirurga	4540
+Konsultacja neurologa	4549
+Konsultacja neurologa - dzieci	7056
+Konsultacja okulisty	4565
+Konsultacja okulisty - dzieci	7681
+Konsultacja onkologa	4572
+Konsultacja ortopedy	4436
+Konsultacja ortopedy - dzieci	7678
+Konsultacja pediatry - szczepienia dzieci do lat 6	8752
+Konsultacja pediatry - w gabinecie dzieci chorych	7409
+Konsultacja pediatry - w gabinecie dzieci zdrowych	7408
+Konsultacja pediatry - w gabinecie dzieci zdrowych - bilans	9190
+Konsultacja proktologa	4430
+Konsultacja pulmonologa	4598
+Konsultacja reumatologa	4604
+Konsultacja urologa	4614
+Kwalifikacja - do szczepienia dzieci powyżej 6 r.ż.	4106
+Umówienie wizyty na scaling (usuwanie złogów)	9756
+Umówienie wizyty u chirurga stomatologa	8904
+Umówienie wizyty u stomatologa	6621
+Umówienie wizyty u stomatologa dziecięcego	8914
+
