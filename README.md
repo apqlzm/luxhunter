@@ -1,5 +1,5 @@
 # luxhunter
-Helps reservate appointment in Luxmed.
+Helps book appointment in Luxmed.
 
 Do czego się przydaje?
 
