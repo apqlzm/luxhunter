@@ -1,6 +1,4 @@
 # luxhunter
-Helps book appointment in Luxmed.
 
-Do czego się przydaje?
 
-Jak skonfigurować?
+Skrypt należy ustawić w crontab z odpowiednimi parametrami.
