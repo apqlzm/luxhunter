@@ -23,20 +23,20 @@ def notify(email_text, dst_email):
 
     from_ = 'powiadomienie@o-wizycie.pl',
     to_ = dst_email
-    subject_ = 'Pozdana wizyta jest dostepna w placowce Luxmed'
+    subject_ = 'Szukana wizyta jest dostepna w placowce Luxmed'
     text_ = email_text
     body_ = string.join(("From: %s" % from_, "To: %s" % to_, "Subject: %s" % subject_, "", text_), "\r\n")
     smtpobj.sendmail('abusemenot@tlen.pl', [to_], body_)
     smtpobj.quit()
 
 
-def wtf(text):
+def wtf(text, file_path):
     """
     Write To File
     :param text: text which will be written to file
     :return:
     """
-    out = codecs.open('/tmp/page.html', mode='w', encoding='utf-8')
+    out = codecs.open(file_path, mode='w', encoding='utf-8')
     out.write(unicode(text))
     out.close()
 
@@ -105,10 +105,8 @@ def find(session):
     verification_token = tree.xpath('//form//input[@name="__RequestVerificationToken"]/@value')
     search_params['__RequestVerificationToken'] = verification_token[0]
 
-    print search_params
     r = session.post(find_page_url, data=search_params)
-    print r.status_code
-    wtf(r.text)
+    # wtf(r.text)
 
 
 def find(session, service_id, date_from, date_to, doctor_id, city_id='1', clinic_id='', time_option='Any'):
@@ -134,20 +132,23 @@ def find(session, service_id, date_from, date_to, doctor_id, city_id='1', clinic
         'ClinicId': clinic_id,
         'ServiceId': service_id,
         'PayedOption': 'Free',
-        'DataFrom': date_from,
+        'DateFrom': date_from,
         'DoctorId': doctor_id,
-        'DataTo': date_to,
+        'DateTo': date_to,
         'TimeOption': time_option}
+
+    print search_params
 
     r = session.get(main_page_url)
 
     parser = etree.HTMLParser()
     tree = etree.fromstring(r.text, parser)
+
     verification_token = tree.xpath('//form//input[@name="__RequestVerificationToken"]/@value')
     search_params['__RequestVerificationToken'] = verification_token[0]
 
     r = session.post(find_page_url, data=search_params)
-    wtf(r.text)
+    # wtf(r.text)
 
     if is_appointment_available(r.text):
         print 'Hurray! Visit has been found :)'
@@ -191,7 +192,7 @@ def main():
     parser = argparse.ArgumentParser(description='Luxmed appointment availability checker.')
     parser.add_argument('lxlogin', help='Luxmend account login')
     parser.add_argument('lxpass', help='Luxmed account password')
-    parser.add_argument('email', help='o2 email account')
+    parser.add_argument('email', help='email address')
     parser.add_argument('datefrom', help='Date format dd-mm-yyyy')
     parser.add_argument('dateto', help='Date format dd-mm-yyyy')
     parser.add_argument('serviceid', help='Type of specialist. ID should be taken from csv in repository.')
@@ -200,14 +201,12 @@ def main():
     args = parser.parse_args()
 
     session = log_in(args.lxlogin, args.lxpass)
-    # TODO doctorid
-    isav = find(session, service_id=args.serviceid, date_from=args.datefrom, date_to=args.dateto, doctor_id=args.doctorid, city_id=args.doctorid)
+    isav = find(session, service_id=args.serviceid, date_from=args.datefrom, date_to=args.dateto, doctor_id=args.doctorid, city_id=args.cityid)
     if isav:
         notify('Ortopeda jest!', args.email)  # TODO email should contain details about appointment
     log_out(session)
 
     # args = dict()
-    #
     # args['lux_med'] = raw_input('Luxmed login: ')
     # args['lux_pass'] = getpass.getpass('Luxmed password: ')
     # args['email'] = raw_input('Email address: ')
@@ -217,5 +216,5 @@ def main():
     #     print k + ' ' + v
 
 
-
-main()
+if __name__ == '__main__':
+    main()
