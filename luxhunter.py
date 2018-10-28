@@ -30,7 +30,7 @@ def notify(email_text, dst_email):
     smtpobj.quit()
 
 
-def wtf(text, file_path):
+def wtf(text, file_path='log.txt'):
     """
     Write To File
     :param text: text which will be written to file
@@ -77,39 +77,7 @@ def log_out(session):
         print 'Logout failed'
 
 
-def find(session):
-    """
-    Find appointment
-    :param session:
-    :return:
-    """
-
-    main_page_url = 'https://portalpacjenta.luxmed.pl/PatientPortal/'
-    find_page_url = 'https://portalpacjenta.luxmed.pl/PatientPortal/Reservations/Reservation/Find'
-
-    search_params = {
-        'IsFromStartPage': 'True',
-        'CityId': '1',
-        'ClinicId': '43',
-        'ServiceId': '4502',
-        'PayedOption': 'Free',
-        'DataFrom': '27-05-2015',
-        'DoctorId': '',
-        'DataTo': '26-06-2015',
-        'TimeOption': 'Any'}
-
-    r = session.get(main_page_url)
-
-    parser = etree.HTMLParser()
-    tree = etree.fromstring(r.text, parser)
-    verification_token = tree.xpath('//form//input[@name="__RequestVerificationToken"]/@value')
-    search_params['__RequestVerificationToken'] = verification_token[0]
-
-    r = session.post(find_page_url, data=search_params)
-    # wtf(r.text)
-
-
-def find(session, service_id, date_from, date_to, doctor_id, city_id='1', clinic_id='', time_option='Any'):
+def find(session, service_id, date_from, date_to, doctor_id='0', city_id='5', clinic_id='', time_option='Any'):
     """
     Find appointment.
     :param session: session object is created during log in and passed to the function
@@ -127,13 +95,14 @@ def find(session, service_id, date_from, date_to, doctor_id, city_id='1', clinic
     find_page_url = 'https://portalpacjenta.luxmed.pl/PatientPortal/Reservations/Reservation/Find'
 
     search_params = {
-        'IsFromStartPage': 'True',
+        'DateOption': 'SelectedDate',
         'CityId': city_id,
         'ClinicId': clinic_id,
         'ServiceId': service_id,
+        'DoctorMultiIdentyfier': "%s-%s-%s" % (doctor_id, service_id, clinic_id),
         'PayedOption': 'Free',
+        'SearchFirstFree': 'false',
         'DateFrom': date_from,
-        'DoctorId': doctor_id,
         'DateTo': date_to,
         'TimeOption': time_option}
 
@@ -198,23 +167,15 @@ def main():
     parser.add_argument('serviceid', help='Type of specialist. ID should be taken from csv in repository.')
     parser.add_argument('doctorid', help='Doctor id. ID should be take from csv in repository.')
     parser.add_argument('cityid', help='City id. ID should be taken from csv in repository.')
+    parser.add_argument('clinicid', help='Clinic id. ID should be taken from csv in repository.')
+    parser.add_argument('timeoption', help='Time option from range: Morning, Afternoon, Evening or Any')
     args = parser.parse_args()
 
     session = log_in(args.lxlogin, args.lxpass)
-    isav = find(session, service_id=args.serviceid, date_from=args.datefrom, date_to=args.dateto, doctor_id=args.doctorid, city_id=args.cityid)
+    isav = find(session, service_id=args.serviceid, date_from=args.datefrom, date_to=args.dateto, doctor_id=args.doctorid, city_id=args.cityid, clinic_id=args.clinicid, time_option=args.timeoption)
     if isav:
-        notify('Ortopeda jest!', args.email)  # TODO email should contain details about appointment
+        notify('Wizyta znaleziona dla uzytkownika: %s' % args.lxlogin, args.email)
     log_out(session)
-
-    # args = dict()
-    # args['lux_med'] = raw_input('Luxmed login: ')
-    # args['lux_pass'] = getpass.getpass('Luxmed password: ')
-    # args['email'] = raw_input('Email address: ')
-    # args['email_pass'] = getpass.getpass('Email password: ')
-    #
-    # for k, v in args.iteritems():
-    #     print k + ' ' + v
-
 
 if __name__ == '__main__':
     main()
