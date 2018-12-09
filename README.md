@@ -1,4 +1,4 @@
-# luxhunter
+# luxhunter -SCRIPT IS OUTDATED-
 
 ## Do czego to służy?
 Bywa że musimy umówić się na wizytę do specjalisty lecz nie ma dostępnych wizyt w dogodnym terminie. Wtedy możemy ustawić luxhunter który będzie monitorował portal i informował nas w razie zwolnienia się wizyty.
